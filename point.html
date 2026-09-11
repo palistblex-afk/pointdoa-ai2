@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Point do Açaí</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --roxo:#13001c;
+  --roxo2:#350044;
+  --roxo3:#680a82;
+  --rosa:#ed008c;
+  --amarelo:#ffc400;
+  --verde:#25d366;
+  --branco:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Poppins,sans-serif;
+  background:var(--roxo);
+  color:white;
+}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+
+/* MENU */
+header{
+  position:fixed;
+  z-index:999;
+  width:100%;
+  height:75px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(13,0,20,.88);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,196,0,.25);
+}
+.logo{
+  font-family:"Bebas Neue";
+  font-size:34px;
+  line-height:.7;
+}
+.logo span{color:var(--amarelo)}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:13px;font-weight:600}
+nav a:hover{color:var(--amarelo)}
+.menu-btn{
+  background:var(--amarelo);
+  color:#17001e;
+  padding:12px 20px;
+  border-radius:30px;
+  font-weight:900;
+}
+.mobile{display:none;font-size:25px}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  padding:120px 7% 70px;
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  align-items:center;
+  gap:40px;
+  background:
+    radial-gradient(circle at 70% 50%,#65007855,transparent 35%),
+    linear-gradient(135deg,#08000e,#27002f);
+}
+.hero h1{
+  font-family:"Bebas Neue";
+  font-size:clamp(75px,10vw,145px);
+  line-height:.78;
+}
+.hero h1 span{
+  display:block;
+  color:var(--amarelo);
+  font-family:Poppins;
+  font-style:italic;
+  font-size:.52em;
+}
+.hero h2{
+  color:#ddd;
+  font-size:22px;
+  margin:25px 0 12px;
+}
+.hero p{
+  max-width:570px;
+  color:#d7c8dc;
+  line-height:1.8;
+  font-size:14px;
+}
+.badge{
+  display:inline-block;
+  background:var(--amarelo);
+  color:#19001e;
+  padding:8px 17px;
+  border-radius:30px;
+  font-size:11px;
+  font-weight:900;
+  margin-bottom:20px;
+}
+.hero-buttons{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{
+  border:0;
+  padding:15px 25px;
+  border-radius:40px;
+  font-weight:900;
+  font-size:13px;
+}
+.btn-yellow{background:var(--amarelo);color:#19001e}
+.btn-green{background:var(--verde);color:white}
+.hero-img{
+  width:100%;
+  max-height:650px;
+  object-fit:cover;
+  border-radius:30px;
+  border:2px solid var(--rosa);
+  box-shadow:0 30px 80px #0008;
+}
+
+/* TITULOS */
+.title{text-align:center;padding:80px 5% 40px}
+.title small{
+  color:var(--amarelo);
+  letter-spacing:3px;
+  font-weight:900;
+}
+.title h2{
+  font-family:"Bebas Neue";
+  font-size:65px;
+  line-height:1;
+  margin-top:8px;
+}
+.title p{
+  color:#bcaec2;
+  max-width:650px;
+  margin:15px auto;
+  font-size:13px;
+  line-height:1.7;
+}
+
+/* MONTADOR */
+.order-area{
+  background:#fff;
+  color:#19001e;
+  padding:20px 7% 90px;
+}
+.order{
+  max-width:1250px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.5fr .8fr;
+  gap:25px;
+}
+.builder{
+  background:linear-gradient(145deg,#3d004b,#17001e);
+  padding:28px;
+  border-radius:28px;
+  color:white;
+}
+.step{
+  padding:23px 0;
+  border-bottom:1px solid #ffffff18;
+}
+.step:last-child{border:0}
+.step h3{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:16px;
+  margin-bottom:17px;
+}
+.num{
+  background:var(--amarelo);
+  color:#19001e;
+  width:30px;
+  height:30px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  font-weight:900;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.option{position:relative}
+.option input{
+  position:absolute;
+  opacity:0;
+}
+.option label{
+  display:block;
+  padding:12px;
+  border:1px solid #ffffff20;
+  border-radius:12px;
+  background:#ffffff08;
+  font-size:12px;
+  cursor:pointer;
+  transition:.2s;
+}
+.option label:hover{border-color:var(--amarelo)}
+.option input:checked+label{
+  border-color:var(--amarelo);
+  background:#ffc40018;
+  box-shadow:inset 0 0 0 1px var(--amarelo);
+}
+.price{float:right;color:var(--amarelo);font-weight:900}
+.limit{
+  color:#bcaac2;
+  font-size:10px;
+  margin-top:10px;
+}
+
+/* RESUMO */
+.cart{
+  position:sticky;
+  top:95px;
+  background:linear-gradient(145deg,#650879,#270032);
+  padding:27px;
+  border-radius:28px;
+  color:white;
+  border:1px solid #ffc40055;
+}
+.cart h2{
+  font-family:"Bebas Neue";
+  color:var(--amarelo);
+  font-size:38px;
+}
+.cart-items{
+  margin:15px 0;
+  max-height:390px;
+  overflow:auto;
+}
+.cart-item{
+  border-bottom:1px solid #ffffff18;
+  padding:14px 0;
+  font-size:11px;
+  line-height:1.7;
+}
+.cart-item strong{color:var(--amarelo)}
+.remove{
+  background:#ff416022;
+  color:#ff8493;
+  border:0;
+  padding:5px 8px;
+  border-radius:7px;
+  font-size:10px;
+}
+.total{
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid #ffffff20;
+  padding:18px 0;
+  font-weight:900;
+}
+.total b{font-size:23px;color:var(--amarelo)}
+.customer input,
+.customer textarea,
+.customer select{
+  width:100%;
+  margin-bottom:9px;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ffffff22;
+  background:#ffffff0c;
+  color:white;
+  outline:0;
+  font-size:11px;
+}
+.customer select option{color:#19001e}
+.customer textarea{min-height:70px}
+.full{width:100%;margin-top:8px}
+
+/* ACOMPANHAMENTOS */
+.acomp{
+  padding:80px 7%;
+  background:
+    radial-gradient(circle at center,#57006b,transparent 45%),
+    #0b0010;
+}
+.acomp-box{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  background:#ffffff08;
+  border:1px solid #ed008c55;
+  border-radius:28px;
+  padding:30px;
+}
+.acomp-col{
+  padding:15px 25px;
+  border-right:1px solid #ffc40055;
+}
+.acomp-col:last-child{border:0}
+.acomp-col h3{color:var(--amarelo);margin-bottom:15px}
+.acomp-col p{
+  font-size:12px;
+  line-height:2;
+  color:#eee;
+}
+
+/* ESPECIAIS */
+.special{
+  background:#fff;
+  color:#19001e;
+  padding:20px 7% 90px;
+}
+.special-grid{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.card{
+  position:relative;
+  overflow:hidden;
+  border-radius:25px;
+  background:#22002d;
+  border:2px solid var(--rosa);
+  min-height:400px;
+}
+.card img{
+  width:100%;
+  height:270px;
+  object-fit:cover;
+  display:block;
+}
+.card-info{
+  padding:17px 20px;
+  color:white;
+}
+.card-info h3{
+  font-family:"Bebas Neue";
+  font-size:34px;
+  line-height:.9;
+}
+.card-info p{
+  font-size:10px;
+  color:#d4c4da;
+  margin:8px 0;
+}
+.card-price{
+  display:inline-block;
+  background:white;
+  color:#19001e;
+  padding:6px 15px;
+  border-radius:30px;
+  font-weight:900;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  padding:90px 7%;
+  background:linear-gradient(135deg,#500064,#17001f);
+}
+.cta h2{
+  font-family:"Bebas Neue";
+  font-size:65px;
+  color:var(--amarelo);
+}
+
+/* FOOTER */
+footer{
+  background:#050007;
+  padding:45px 7%;
+}
+.footer{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  flex-wrap:wrap;
+}
+.footer h2{
+  font-family:"Bebas Neue";
+  font-size:42px;
+}
+.footer h2 span{color:var(--amarelo)}
+.footer p,.footer a{
+  color:#9f91a4;
+  font-size:11px;
+  line-height:2;
+}
+.copy{
+  text-align:center;
+  border-top:1px solid #ffffff10;
+  margin-top:30px;
+  padding-top:20px;
+  color:#655b69;
+  font-size:10px;
+}
+
+/* WHATSAPP */
+.float{
+  position:fixed;
+  z-index:1000;
+  right:20px;
+  bottom:20px;
+  width:60px;
+  height:60px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--verde);
+  font-size:27px;
+  box-shadow:0 10px 35px #25d36666;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{display:none}
+  .mobile{display:block}
+  .hero{grid-template-columns:1fr;padding-top:110px}
+  .order{grid-template-columns:1fr}
+  .cart{position:relative;top:0}
+  .special-grid{grid-template-columns:1fr}
+  .acomp-box{grid-template-columns:1fr}
+  .acomp-col{border-right:0;border-bottom:1px solid #ffc40055}
+  .acomp-col:last-child{border:0}
+}
+@media(max-width:600px){
+  .hero h1{font-size:75px}
+  .title h2,.cta h2{font-size:48px}
+  .grid,.grid.three{grid-template-columns:1fr 1fr}
+  .builder{padding:18px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" href="#inicio">POINT <span>do Açaí</span></a>
+
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#pedido">Montar pedido</a>
+    <a href="#acomp">Acompanhamentos</a>
+    <a href="#especiais">Especiais</a>
+    <a class="menu-btn" href="#pedido">FAZER PEDIDO</a>
+  </nav>
+
+  <div class="mobile">☰</div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+
+  <div>
+    <span class="badge">✦ 100% PREMIUM QUALITY ✦</span>
+
+    <h1>POINT <span>do Açaí</span></h1>
+
+    <h2>Sabor, cremosidade e muito mais do que açaí!</h2>
+
+    <p>
+      Monte seu açaí do seu jeito, escolha seus cremes,
+      acompanhamentos e adicionais. Depois é só enviar o
+      pedido completo diretamente pelo WhatsApp.
+    </p>
+
+    <div class="hero-buttons">
+      <a class="btn btn-yellow" href="#pedido">
+        🍇 MONTAR MEU PEDIDO
+      </a>
+
+      <a class="btn btn-green"
+         href="https://wa.me/5581993816081"
+         target="_blank">
+        💬 WHATSAPP
+      </a>
+    </div>
+  </div>
+
+  <!-- FOTO DA BARCA -->
+  <img class="hero-img"
+       src="barca.jpg"
+       alt="Barca G Açaí">
+
+</section>
+
+<!-- PEDIDO -->
+<section class="order-area" id="pedido">
+
+  <div class="title">
+    <small>Pedido personalizado</small>
+    <h2>MONTE SEU PEDIDO</h2>
+    <p>
+      Escolha o tamanho, cremes, acompanhamentos e adicionais.
+      Você pode adicionar vários produtos ao mesmo pedido.
+    </p>
+  </div>
+
+  <div class="order">
+
+    <div class="builder">
+
+      <!-- TAMANHO -->
+      <div class="step">
+
+        <h3><span class="num">1</span> ESCOLHA O TAMANHO</h3>
+
+        <div class="grid">
+
+          <div class="option">
+            <input type="radio" name="tamanho" id="p"
+                   value="P - 250 ML" data-price="10">
+            <label for="p">
+              P - 250 ML
+              <span class="price">R$ 10</span>
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="radio" name="tamanho" id="m"
+                   value="M - 350 ML" data-price="12">
+            <label for="m">
+              M - 350 ML
+              <span class="price">R$ 12</span>
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="radio" name="tamanho" id="g"
+                   value="G - 500 ML" data-price="18">
+            <label for="g">
+              G - 500 ML
+              <span class="price">R$ 18</span>
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="radio" name="tamanho" id="gg"
+                   value="GG - 750 ML" data-price="24">
+            <label for="gg">
+              GG - 750 ML
+              <span class="price">R$ 24</span>
+            </label>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CREMES -->
+      <div class="step">
+
+        <h3><span class="num">2</span> ATÉ 2 AÇAÍ / CREMES</h3>
+
+        <div class="grid">
+
+          <div class="option"><input type="checkbox" class="creme" value="Açaí tradicional" id="c1"><label for="c1">Açaí tradicional</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Brigadeiro de colher" id="c2"><label for="c2">Brigadeiro</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Delícia de abacaxi" id="c3"><label for="c3">Delícia de abacaxi</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Ninho com Nutella" id="c4"><label for="c4">Ninho c/ Nutella</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Ninho com Oreo" id="c5"><label for="c5">Ninho c/ Oreo</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Sonho de Valsa" id="c6"><label for="c6">Sonho de Valsa</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Ovomaltine" id="c7"><label for="c7">Ovomaltine</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Kinder Ovo" id="c8"><label for="c8">Kinder Ovo</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Morango" id="c9"><label for="c9">Morango</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Cupuaçu" id="c10"><label for="c10">Cupuaçu</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Black" id="c11"><label for="c11">Black</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Ninho" id="c12"><label for="c12">Ninho</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Paçoca" id="c13"><label for="c13">Paçoca</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Tapioca" id="c14"><label for="c14">Tapioca</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Chocomenta" id="c15"><label for="c15">Chocomenta</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Brownie" id="c16"><label for="c16">Brownie</label></div>
+          <div class="option"><input type="checkbox" class="creme" value="Iogurte Grego" id="c17"><label for="c17">Iogurte Grego</label></div>
+
+        </div>
+
+        <p class="limit">Você pode escolher no máximo 2 opções.</p>
+      </div>
+
+      <!-- ACOMPANHAMENTOS -->
+      <div class="step">
+
+        <h3><span class="num">3</span> ACOMPANHAMENTOS — SEM LIMITES</h3>
+
+        <div class="grid">
+
+          <div class="option"><input type="checkbox" class="ac" value="Banana" id="a1"><label for="a1">🍌 Banana</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Granola" id="a2"><label for="a2">Granola</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Leite em pó" id="a3"><label for="a3">Leite em pó</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Farinha láctea" id="a4"><label for="a4">Farinha láctea</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Neston" id="a5"><label for="a5">Neston</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Ovomaltine" id="a6"><label for="a6">Ovomaltine</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="M&M" id="a7"><label for="a7">M&amp;M</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Paçoca" id="a8"><label for="a8">Paçoca</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Cereal" id="a9"><label for="a9">Cereal</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Uva passa" id="a10"><label for="a10">Uva passa</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Amendoim" id="a11"><label for="a11">Amendoim</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Leite condensado" id="a12"><label for="a12">Leite condensado</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Chocolate" id="a13"><label for="a13">🍫 Chocolate</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Morango" id="a14"><label for="a14">🍓 Morango</label></div>
+          <div class="option"><input type="checkbox" class="ac" value="Mel" id="a15"><label for="a15">🍯 Mel</label></div>
+
+        </div>
+      </div>
+
+      <!-- ADICIONAIS -->
+      <div class="step">
+
+        <h3><span class="num">4</span> ADICIONAIS</h3>
+
+        <div class="grid">
+
+          <div class="option"><input type="checkbox" class="add" value="Morango" data-price="4" id="x1"><label for="x1">Morango <span class="price">+R$4</span></label></div>
+          <div class="option"><input type="checkbox" class="add" value="Kiwi" data-price="4" id="x2"><label for="x2">Kiwi <span class="price">+R$4</span></label></div>
+          <div class="option"><input type="checkbox" class="add" value="Nutella" data-price="4" id="x3"><label for="x3">Nutella <span class="price">+R$4</span></label></div>
+          <div class="option"><input type="checkbox" class="add" value="KitKat" data-price="4" id="x4"><label for="x4">KitKat <span class="price">+R$4</span></label></div>
+          <div class="option"><input type="checkbox" class="add" value="Oreo" data-price="3" id="x5"><label for="x5">Oreo <span class="price">+R$3</span></label></div>
+          <div class="option"><input type="checkbox" class="add" value="Bis" data-price="4" id="x6"><label for="x6">Bis <span class="price">+R$4</span></label></div>
+          <div class="option"><input type="checkbox" class="add" value="Gotas de chocolate" data-price="3" id="x7"><label for="x7">Gotas de chocolate <span class="price">+R$3</span></label></div>
+          <div class="option"><input type="checkbox" class="add" value="Sonho de Valsa" data-price="4" id="x8"><label for="x8">Sonho de Valsa <span class="price">+R$4</span></label></div>
+
+        </div>
+      </div>
+
+      <button class="btn btn-yellow full" onclick="adicionar()">
+        ➕ ADICIONAR AO PEDIDO
+      </button>
+
+    </div>
+
+    <!-- CARRINHO -->
+    <aside class="cart">
+
+      <h2>SEU PEDIDO</h2>
+
+      <div class="cart-items" id="cart">
+        <p style="font-size:12px;color:#c8b7ce">
+          Seu pedido está vazio.<br><br>
+          Escolha as opções e adicione ao pedido.
+        </p>
+      </div>
+
+      <div class="total">
+        TOTAL
+        <b id="total">R$ 0,00</b>
+      </div>
+
+      <div class="customer">
+
+        <input id="nome" placeholder="Seu nome">
+
+        <select id="forma">
+          <option>Retirada no local</option>
+          <option>Entrega</option>
+        </select>
+
+        <input id="endereco"
+               placeholder="Endereço para entrega">
+
+        <textarea id="obs"
+                  placeholder="Observações do pedido"></textarea>
+
+      </div>
+
+      <button class="btn btn-green full" onclick="whatsapp()">
+        💬 ENVIAR PEDIDO PELO WHATSAPP
+      </button>
+
+      <button class="btn full"
+              style="background:#ffffff12;color:#ff8094"
+              onclick="limpar()">
+        🗑️ LIMPAR PEDIDO
+      </button>
+
+    </aside>
+
+  </div>
+</section>
+
+<!-- ACOMPANHAMENTOS -->
+<section class="acomp" id="acomp">
+
+  <div class="title">
+    <small>Do seu jeito</small>
+    <h2>ACOMPANHAMENTOS</h2>
+    <p>Escolha quantos acompanhamentos quiser.</p>
+  </div>
+
+  <div class="acomp-box">
+
+    <div class="acomp-col">
+      <h3>CLÁSSICOS</h3>
+      <p>
+        • Banana<br>
+        • Granola<br>
+        • Leite em pó<br>
+        • Farinha láctea
+      </p>
+    </div>
+
+    <div class="acomp-col">
+      <h3>DOCINHOS</h3>
+      <p>
+        • Neston<br>
+        • Ovomaltine<br>
+        • M&amp;M<br>
+        • Paçoca
+      </p>
+    </div>
+
+    <div class="acomp-col">
+      <h3>EXTRAS</h3>
+      <p>
+        • Cereal<br>
+        • Uva passa<br>
+        • Amendoim<br>
+        • Leite condensado<br>
+        • Chocolate<br>
+        • Morango<br>
+        • Mel
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ESPECIAIS -->
+<section class="special" id="especiais">
+
+  <div class="title">
+    <small>Experimente</small>
+    <h2>NOSSOS ESPECIAIS</h2>
+    <p>
+      Combinações especiais do Point do Açaí.
+    </p>
+  </div>
+
+  <div class="special-grid">
+
+    <!-- PRIMEIRA FOTO = BARCA -->
+    <div class="card">
+      <img src="barca.jpg" alt="Barca G Açaí">
+
+      <div class="card-info">
+        <h3>BARCA G AÇAÍ</h3>
+        <p>Acompanha 2 adicionais.</p>
+        <span class="card-price">R$ 40,00</span>
+      </div>
+    </div>
+
+    <!-- SEGUNDA FOTO = ROLETA -->
+    <div class="card">
+      <img src="roleta.jpg" alt="Roleta G Açaí">
+
+      <div class="card-info">
+        <h3>ROLETA G AÇAÍ</h3>
+        <p>Acompanha 2 adicionais.</p>
+        <span class="card-price">R$ 35,00</span>
+      </div>
+    </div>
+
+    <!-- TERCEIRA FOTO = VITAMINA -->
+    <div class="card">
+      <img src="vitamina.jpg" alt="Vitamina de Açaí">
+
+      <div class="card-info">
+        <h3>VITAMINA DE AÇAÍ</h3>
+        <p>Feita com açaí selecionado para mais sabor e energia.</p>
+        <span class="card-price">R$ 17,00</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+
+  <h2>BATEU A VONTADE?</h2>
+
+  <p style="margin:15px 0 25px;color:#ddd">
+    Monte agora seu açaí e envie seu pedido diretamente para o WhatsApp.
+  </p>
+
+  <a href="#pedido" class="btn btn-yellow">
+    🍇 MONTAR MEU PEDIDO
+  </a>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer">
+
+    <div>
+      <h2>POINT <span>do Açaí</span></h2>
+      <p>
+        O melhor açaí é aqui!<br>
+        Sabor, qualidade e cremosidade.
+      </p>
+    </div>
+
+    <div>
+      <p>📱 <a href="https://wa.me/5581993816081">(81) 9 9381-6081</a></p>
+      <p>📸 @POINTDOACAI47</p>
+      <p>📍 Rua Johnh Kennedy Nº 521</p>
+    </div>
+
+  </div>
+
+  <div class="copy">
+    © 2026 Point do Açaí — Todos os direitos reservados.
+  </div>
+
+</footer>
+
+<a class="float" href="#pedido">💬</a>
+
+<script>
+
+let pedidos=[];
+
+/* LIMITA CREMES A 2 */
+document.querySelectorAll(".creme").forEach(el=>{
+  el.addEventListener("change",()=>{
+    const selecionados=document.querySelectorAll(".creme:checked");
+
+    if(selecionados.length>2){
+      el.checked=false;
+      alert("Você pode escolher no máximo 2 opções de açaí/cremes.");
+    }
+  });
+});
+
+/* ADICIONAR */
+function adicionar(){
+
+  const tamanho=document.querySelector('input[name="tamanho"]:checked');
+
+  if(!tamanho){
+    alert("Escolha o tamanho do açaí.");
+    return;
+  }
+
+  const cremes=[...document.querySelectorAll(".creme:checked")]
+    .map(x=>x.value);
+
+  const acompanhamentos=[...document.querySelectorAll(".ac:checked")]
+    .map(x=>x.value);
+
+  const adicionais=[...document.querySelectorAll(".add:checked")]
+    .map(x=>({
+      nome:x.value,
+      preco:Number(x.dataset.price)
+    }));
+
+  const base=Number(tamanho.dataset.price);
+
+  const extras=adicionais.reduce((s,x)=>s+x.preco,0);
+
+  pedidos.push({
+    tamanho:tamanho.value,
+    cremes,
+    acompanhamentos,
+    adicionais,
+    preco:base+extras
+  });
+
+  atualizar();
+
+  document.querySelectorAll(
+    'input[name="tamanho"],.creme,.ac,.add'
+  ).forEach(x=>x.checked=false);
+
+  alert("✅ Item adicionado ao pedido!");
+
+}
+
+/* ATUALIZA CARRINHO */
+function atualizar(){
+
+  const cart=document.getElementById("cart");
+  const total=document.getElementById("total");
+
+  if(!pedidos.length){
+
+    cart.innerHTML=`
+      <p style="font-size:12px;color:#c8b7ce">
+      Seu pedido está vazio.<br><br>
+      Escolha as opções e adicione ao pedido.
+      </p>`;
+
+    total.innerText="R$ 0,00";
+    return;
+  }
+
+  let soma=0;
+
+  cart.innerHTML="";
+
+  pedidos.forEach((p,i)=>{
+
+    soma+=p.preco;
+
+    const div=document.createElement("div");
+
+    div.className="cart-item";
+
+    div.innerHTML=`
+      <strong>🍇 ${p.tamanho}</strong><br>
+      <b>Cremes:</b>
+      ${p.cremes.join(", ")||"Nenhum"}<br>
+      <b>Acompanhamentos:</b>
+      ${p.acompanhamentos.join(", ")||"Nenhum"}<br>
+      <b>Adicionais:</b>
+      ${
+        p.adicionais.map(x=>
+          `${x.nome} (+R$${x.preco})`
+        ).join(", ")||"Nenhum"
+      }<br>
+      <b>Valor:</b> R$ ${p.preco.toFixed(2).replace(".",",")}
+      <br><br>
+      <button class="remove"
+              onclick="remover(${i})">
+        ✕ REMOVER
+      </button>
+    `;
+
+    cart.appendChild(div);
+
+  });
+
+  total.innerText=
+    "R$ "+soma.toFixed(2).replace(".",",");
+
+}
+
+/* REMOVER */
+function remover(i){
+
+  pedidos.splice(i,1);
+
+  atualizar();
+
+}
+
+/* LIMPAR */
+function limpar(){
+
+  if(!pedidos.length)return;
+
+  if(confirm("Deseja limpar todo o pedido?")){
+
+    pedidos=[];
+
+    atualizar();
+
+  }
+
+}
+
+/* WHATSAPP */
+function whatsapp(){
+
+  if(!pedidos.length){
+
+    alert("Adicione pelo menos um item ao pedido.");
+
+    return;
+  }
+
+  let nome=document.getElementById("nome").value.trim();
+  let forma=document.getElementById("forma").value;
+  let endereco=document.getElementById("endereco").value.trim();
+  let obs=document.getElementById("obs").value.trim();
+
+  let total=pedidos.reduce((s,p)=>s+p.preco,0);
+
+  let msg=
+`🍇 *NOVO PEDIDO — POINT DO AÇAÍ* 🍇
+
+Olá! Gostaria de fazer este pedido:
+
+`;
+
+  pedidos.forEach((p,i)=>{
+
+    msg+=`
+━━━━━━━━━━━━━━━━
+🍇 *ITEM ${i+1}*
+━━━━━━━━━━━━━━━━
+
+📏 *Tamanho:* ${p.tamanho}
+
+🥣 *Açaí / Cremes:*
+${p.cremes.length?p.cremes.map(x=>"• "+x).join("\n"):"• Nenhum"}
+
+🍓 *Acompanhamentos:*
+${p.acompanhamentos.length?p.acompanhamentos.map(x=>"• "+x).join("\n"):"• Nenhum"}
+
+➕ *Adicionais:*
+${
+p.adicionais.length
+?p.adicionais.map(x=>`• ${x.nome} — R$ ${x.preco},00`).join("\n")
+:"• Nenhum"
+}
+
+💰 *Valor:* R$ ${p.preco.toFixed(2).replace(".",",")}
+
+`;
+  });
+
+  msg+=`
+━━━━━━━━━━━━━━━━
+💰 *TOTAL: R$ ${total.toFixed(2).replace(".",",")}*
+━━━━━━━━━━━━━━━━
+
+👤 *Nome:* ${nome||"Não informado"}
+
+🚚 *Forma:* ${forma}
+`;
+
+  if(forma==="Entrega"){
+    msg+=`
+📍 *Endereço:* ${endereco||"Não informado"}
+`;
+  }
+
+  if(obs){
+    msg+=`
+📝 *Observação:* ${obs}
+`;
+  }
+
+  msg+=`
+Obrigado! 🙌
+Pedido enviado pelo site do Point do Açaí.`;
+
+  const url=
+    "https://wa.me/5581993816081?text="+
+    encodeURIComponent(msg);
+
+  window.open(url,"_blank");
+
+}
+
+</script>
+
+</body>
+</html>
